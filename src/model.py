@@ -6,20 +6,30 @@ class Model(object):
 
     def make(self, first, hidden, last):
         model = Sequential()
-        model.add(Dense(hidden[0], 
-                        input_dim          = first, 
-                        activation         = 'relu', 
-                        kernel_initializer = 'random_normal'
-        ))
+
+        # First layer
+        layer = Dense(input_dim          = first,
+                      units              = hidden[0],
+                      kernel_initializer = 'random_normal',
+                      bias_initializer   = 'random_normal',
+                      activation         = 'relu')
+        model.add(layer)
+
+        # Hidden layers
         for i in range(len(hidden)-1):
-            model.add(Dense(hidden[i+1], 
-                            activation         = 'relu', 
-                            kernel_initializer = 'random_normal'
-            ))
-        model.add(Dense(last, 
-                        activation         = 'sigmoid', 
-                        kernel_initializer = 'random_normal'
-        ))
+            layer = Dense(units              = hidden[i+1],
+                          kernel_initializer = 'random_normal',
+                          bias_initializer   = 'random_normal',
+                          activation         = 'relu')
+            model.add(layer)
+
+        # Last layer
+        layer = Dense(units              = last,
+                      kernel_initializer = 'random_normal',
+                      bias_initializer   = 'random_normal',
+                      activation         = 'sigmoid')
+        model.add(layer)
+
         return model
 
 

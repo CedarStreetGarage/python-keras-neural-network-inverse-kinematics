@@ -47,8 +47,10 @@ function expression, and augmented by Lin on why deep learning works as well as 
 ### Methodology
 
 The robot kinematics studied here is a 3R robot.  Why 3R?  Mainly because I have an industial 6R 
-and believe the waist-shoulder-elbow aspect is a good exercise for inverse kinematics.  3R robots
-admit a slightly more rich set of singularities than robots like the Stanford arm and Cartesian 
+and believe the waist-shoulder-elbow aspect is a good exercise for inverse kinematics.  It is also 
+handy given the abundance of inexpensive servo-driven 3R robotics models that are available, lending 
+itself simple for anyone to independently verify the results on physical hardware.  Additionally, 3R 
+robots admit a slightly more rich set of singularities than robots like the Stanford arm and Cartesian 
 (gantry) robots, and the forward and inverse kinematics have well known analytic solutions.
 
 In this work I am using the Denavit-Hartenberg convention for computing the composite homogeneous
@@ -60,6 +62,14 @@ robot without knowledge of how to find a closed form inverse mapping and underst
 a model that provides acceptable accuracy.
 
 
+
+### Code
+
+First, make sure all your libs are up to date:
+
+```
+pip -r requirements.txt
+```
 
 
 
