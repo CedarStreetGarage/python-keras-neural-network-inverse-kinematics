@@ -19,21 +19,25 @@ class Generator(object):
         a1 = np.random.uniform(0.0, np.pi/4)
         a2 = np.random.uniform(0.0, np.pi/4)
         a3 = np.random.uniform(0.0, np.pi/4)
-        return a1, a2, a3
+        return np.array([a1, a2, a3])
 
     def generate_positions(self, angles):
-        p = self.chain.forward({a1:angles[0], a2:angles[1], a3:angles[2]})
-        return p[0], p[1], p[2]
+        p = self.chain.forward({
+            'a1': angles[0], 
+            'a2': angles[1], 
+            'a3': angles[2]
+        })
+        return np.array([p[0], p[1], p[2]])
 
     def make(self, batch_size):
         while 1:
             features = []
             labels   = []
             for i in range(batch_size):
-                f = self.generate_angles()
-                l = self.generate_positions(f)
-                features.append(f)
-                labels.append(l)
-            yield features, labels
+                angles = self.generate_angles()
+                positions = self.generate_positions(angles)
+                features.append(angles)
+                labels.append(positions)
+            yield np.array([features, labels])
 
 
