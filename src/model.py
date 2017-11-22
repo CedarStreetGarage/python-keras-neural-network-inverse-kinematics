@@ -5,7 +5,11 @@ from keras.regularizers import l2
 
 class Model(object):
 
-    def make(self, first, hidden, last):
+    def make(self):
+        return self._generate(3, [10, 40, 40, 10], 3)
+
+
+    def _generate(self, first, hidden, last):
         model = Sequential()
 
         # First layer
@@ -37,5 +41,4 @@ class Model(object):
         model.add(layer)
 
         return model
-
 

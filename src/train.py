@@ -4,7 +4,7 @@ from keras.optimizers import Adam
 from keras.callbacks  import ModelCheckpoint
 
 
-model = Model().make(3, [10, 40, 40, 10], 3)
+model = Model().make()
 model.summary()
 
 opt = Adam(lr=1.0e-3)

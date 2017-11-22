@@ -16,7 +16,7 @@ class Generator(object):
         self.chain.link(1.0, a2, 0.2, pi/2)
         self.chain.link(1.0, a3, 0.1, 0.0)
         self.angle_scale    = Scale([-np.pi/4, np.pi/4], [-0.5, 0.5])
-        self.position_scale = Scale([-10.0,    10.0],    [-0.5, 0.5])
+        self.position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
     def generate_angles(self):
         a1 = np.random.uniform(-np.pi/4, np.pi/4)
