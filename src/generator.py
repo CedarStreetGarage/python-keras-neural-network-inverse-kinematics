@@ -20,10 +20,10 @@ class Generator(object):
 
     def generate_angles(self):
         a1 = np.random.uniform(-np.pi/4, np.pi/4)
-        a1 = self.angle_scale.forward_scale(a1)
         a2 = np.random.uniform(-np.pi/4, np.pi/4)
-        a2 = self.angle_scale.forward_scale(a2)
         a3 = np.random.uniform(-np.pi/4, np.pi/4)
+        a1 = self.angle_scale.forward_scale(a1)
+        a2 = self.angle_scale.forward_scale(a2)
         a3 = self.angle_scale.forward_scale(a3)
         return [a1, a2, a3]
 
@@ -43,7 +43,7 @@ class Generator(object):
             features = []
             labels   = []
             for i in range(batch_size):
-                angles = self.generate_angles()
+                angles    = self.generate_angles()
                 positions = self.generate_positions(angles)
                 features.append(positions)
                 labels.append(angles)
