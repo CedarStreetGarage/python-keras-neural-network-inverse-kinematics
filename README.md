@@ -3,7 +3,9 @@
 This project seeks to train a neural network to perform inverse kinematics for rigid body link chains.  This
 is by no means a new idea, and it is a discipline where there are in many cases both iterative and
 closed-form solutions.  More generally, this is a study of minimizing error using neural networks 
-on arbitrary nonlinear mappings.  
+on arbitrary nonlinear mappings.  The general goal is to better understand training the inverse mapping
+using only the forward mapping, which entails understanding the best network model for approximating
+functions that may have singularities in the mapping.  
 
 
 
@@ -21,6 +23,18 @@ There are a number of works focusing on neural networks for robotic kinematics a
 
   * [Direct kinematics solution of 3-RRR robot by using two different artificial neural networks](http://ieeexplore.ieee.org/document/7367852/)
 
+
+In this study I am using a 3R robot.  The rigid body mechanics are well studied, but there
+are focus articles relating to space division on the basis of the 3R singularity set that 
+are relevant to understanding the style of manifold we intend to learn:
+
+  * [A classification of 3R regional manipulator singularities and geometries](http://ieeexplore.ieee.org/document/132033/)
+
+  * [Guaranteed detection of the singularities of 3R robotic manipulators](http://perso-laris.univ-angers.fr/~delanoue/article/ms-7-31-2016.pdf)
+
+  * [Classification of one family of 3R positioning Manipulators](https://arxiv.org/pdf/0705.1344.pdf)
+
+
 Another interesting and relevant investigation is the work of Rolnick and Tegmark on natural 
 function expression, and augmented by Lin on why deep learning works as well as it does:
 
@@ -32,9 +46,20 @@ function expression, and augmented by Lin on why deep learning works as well as 
 
 ### Methodology
 
-The robot kinematics studied here is an RRR robot.  The homogeneous transformations, based on
-Denavit-Hartenberg parameterization, is used to determine the Cartesian position of the end 
-effector based on the joint angles.  
+The robot kinematics studied here is a 3R robot.  Why 3R?  Mainly because I have an industial 6R 
+and believe the waist-shoulder-elbow aspect is a good exercise for inverse kinematics.  3R robots
+admit a slightly more rich set of singularities than robots like the Stanford arm and Cartesian 
+(gantry) robots, and the forward and inverse kinematics have well known analytic solutions.
+
+In this work I am using the Denavit-Hartenberg convention for computing the composite homogeneous
+transformation.  For training, I am strictly using the forward kinematics to produce a set of 
+features (Cartesian position of the end effector) and labels (joint angles).  Why using the forward
+kinematic mapping rather than the inverse kinematics that would result in more consistent sampling from
+the desired Cartesian end effector space?  Because the ultimate goal is to be able to actuate a 
+robot without knowledge of how to find a closed form inverse mapping and understand how to create and train
+a model that provides acceptable accuracy.
+
+
 
 
 
