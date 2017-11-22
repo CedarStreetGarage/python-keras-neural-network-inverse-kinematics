@@ -24,7 +24,7 @@ There are a number of works focusing on neural networks for robotic kinematics a
 Another interesting and relevant investigation is the work of Rolnick and Tegmark on natural 
 function expression, and augmented by Lin on why deep learning works as well as it does:
 
-  * [The power of deeper networks for expressing natural functions](The power of deeper networks for expressing natural functions.pdf)
+  * [The power of deeper networks for expressing natural functions](https://arxiv.org/pdf/1705.05502.pdf)
 
   * [Why does deep and cheap learning work so well?](https://arxiv.org/pdf/1608.08225.pdf)
 
