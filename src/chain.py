@@ -20,8 +20,3 @@ class Chain(object):
        r = self.c.evalf(subs=params) * self.o
        return r[:3]
 
-    def reverse(self, mat):
-        b = self.c * mat
-        s = self.c.LUsolve(b)
-        return s
-

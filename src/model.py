@@ -6,7 +6,7 @@ from keras.regularizers import l2
 class Model(object):
 
     def make(self):
-        return self._generate(3, [10, 40, 40, 10], 3)
+        return self._generate(3, [20, 50, 50, 50, 50, 20], 3)
 
 
     def _generate(self, first, hidden, last):
@@ -17,26 +17,25 @@ class Model(object):
                       units              = hidden[0],
                       kernel_initializer = 'random_normal',
                       bias_initializer   = 'random_normal',
-                      W_regularizer      = l2(0.02),
+                      W_regularizer      = l2(0.03),
                       activation         = 'relu')
         model.add(layer)
-        model.add(Dropout(0.2))
+        model.add(Dropout(0.3))
 
         # Hidden layers
         for i in range(len(hidden)-1):
             layer = Dense(units              = hidden[i+1],
                           kernel_initializer = 'random_normal',
                           bias_initializer   = 'random_normal',
-                          W_regularizer      = l2(0.02),
+                          W_regularizer      = l2(0.03),
                           activation         = 'relu')
             model.add(layer)
-            model.add(Dropout(0.2))
+            model.add(Dropout(0.3))
 
         # Last layer
         layer = Dense(units              = last,
                       kernel_initializer = 'random_normal',
                       bias_initializer   = 'random_normal',
-                      W_regularizer      = l2(0.02),
                       activation         = 'sigmoid')
         model.add(layer)
 

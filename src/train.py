@@ -14,10 +14,10 @@ checkpoint = ModelCheckpoint(filepath       = 'model_weights.h5',
                              verbose        = True, 
                              save_best_only = True)
 
-model.fit_generator(generator        = Generator().make(20), 
-                    validation_data  = Generator().make(10),
+model.fit_generator(generator        = Generator().make(50), 
+                    validation_data  = Generator().make(20),
                     steps_per_epoch  = 20, 
-                    epochs           = 10, 
-                    validation_steps = 2,
+                    epochs           = 50, 
+                    validation_steps = 5,
                     callbacks        = [checkpoint])
 
