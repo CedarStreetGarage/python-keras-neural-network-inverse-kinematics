@@ -1,45 +1,51 @@
-from keras.models import Sequential
-from keras.layers import Dense
+from keras.models       import Sequential
+from keras.layers       import Dense
 from keras.regularizers import l2
+
+
+L2_REGULARIZATION = 0.03
+INITIALIZATION    = 'random_normal'
+FIRST_ACTIVATIONS = 'relu'
+LAST_ACTIVATION   = 'sigmoid'
 
 
 class Model(object):
 
     def make(self):
-        return self._generate(3, [20, 50, 50, 20], 3)
+        return self._make(3, [10, 10, 10], 3)
 
 
-    def _generate(self, first, hidden, last):
+    def _make(self, first, hidden, last):
         model = Sequential()
 
         # First layer
         layer = Dense(input_dim          = first,
                       units              = hidden[0],
-                      kernel_initializer = 'random_normal',
-                      kernel_regularizer = l2(0.03),
+                      kernel_initializer = INITIALIZATION,
+                      kernel_regularizer = l2(L2_REGULARIZATION),
                       use_bias           = True,
-                      bias_initializer   = 'random_normal',
-                      bias_regularizer   = l2(0.03),
-                      activation         = 'relu')
+                      bias_initializer   = INITIALIZATION,
+                      bias_regularizer   = l2(L2_REGULARIZATION),
+                      activation         = FIRST_ACTIVATIONS)
         model.add(layer)
 
         # Hidden layers
         for i in range(len(hidden)-1):
             layer = Dense(units              = hidden[i+1],
-                          kernel_initializer = 'random_normal',
-                          kernel_regularizer = l2(0.03),
+                          kernel_initializer = INITIALIZATION,
+                          kernel_regularizer = l2(L2_REGULARIZATION),
                           use_bias           = True,
-                          bias_initializer   = 'random_normal',
-                          bias_regularizer   = l2(0.03),
-                          activation         = 'relu')
+                          bias_initializer   = INITIALIZATION,
+                          bias_regularizer   = l2(L2_REGULARIZATION),
+                          activation         = FIRST_ACTIVATIONS)
             model.add(layer)
 
         # Last layer
         layer = Dense(units              = last,
-                      kernel_initializer = 'random_normal',
+                      kernel_initializer = INITIALIZATION,
                       use_bias           = True,
-                      bias_initializer   = 'random_normal',
-                      activation         = 'sigmoid')
+                      bias_initializer   = INITIALIZATION,
+                      activation         = LAST_ACTIVATION)
         model.add(layer)
 
         return model

@@ -1,22 +1,14 @@
-from homogeneous import Homogeneous
-from sympy import simplify
+from sympy import symbols, pi
+from dh    import DH
 
 
 class Chain(object):
 
-    def __init__(self):
-        self.h = Homogeneous()
-        self.o = self.h.origin()
-        self.c = self.h.stationary()
-
-    def link(self, d, theta, r, alpha):
-        tz = self.h.translate_z(d)
-        rz = self.h.rotate_z(theta)
-        tx = self.h.translate_x(r)
-        rx = self.h.rotate_x(alpha)
-        self.c = simplify(self.c * tz * rz * tx * rx)
-
-    def forward(self, params):
-       r = self.c.evalf(subs=params) * self.o
-       return r[:3]
+    def make(self):
+        dh = DH()
+        a1, a2, a3 = symbols('a1:4')
+        dh.link(1.0, a1, 0.0, 0.0)
+        dh.link(1.0, a2, 0.2, pi/2)
+        dh.link(1.0, a3, 0.1, 0.0)
+        return dh
 

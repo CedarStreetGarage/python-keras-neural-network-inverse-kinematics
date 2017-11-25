@@ -8,11 +8,7 @@ from scale import Scale
 model = Model().make()
 model.load_weights('model_weights.h5')
 
-chain = Chain()
-a1, a2, a3 = symbols('a1:4')
-chain.link(1.0, a1, 0.0, 0.0)
-chain.link(1.0, a2, 0.2, pi/2)
-chain.link(1.0, a3, 0.1, 0.0)
+chain = Chain().make()
 
 angle_scale    = Scale([-np.pi/4, np.pi/4], [-0.5, 0.5])
 position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])

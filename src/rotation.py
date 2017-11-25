@@ -1,4 +1,4 @@
-from sympy import sin, cos
+from sympy          import sin, cos
 from sympy.matrices import Matrix
 
 

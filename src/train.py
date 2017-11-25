@@ -1,7 +1,7 @@
-from model import Model
-from generator import Generator
 from keras.optimizers import Adam
 from keras.callbacks  import ModelCheckpoint
+from model            import Model
+from generator        import Generator
 
 
 model = Model().make()
@@ -17,7 +17,7 @@ checkpoint = ModelCheckpoint(filepath       = 'model_weights.h5',
 model.fit_generator(generator        = Generator().make(50), 
                     validation_data  = Generator().make(20),
                     steps_per_epoch  = 20, 
-                    epochs           = 30,
+                    epochs           = 20,
                     validation_steps = 3,
                     callbacks        = [checkpoint])
 

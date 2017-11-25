@@ -1,20 +1,12 @@
 import numpy as np
-from sympy import symbols, pi
-from chain import Chain
 from scale import Scale
+from chain import Chain
 
 
 class Generator(object):
 
     def __init__(self):
-        self.set_chain()
-
-    def set_chain(self):
-        self.chain = Chain()
-        a1, a2, a3 = symbols('a1:4')
-        self.chain.link(1.0, a1, 0.0, 0.0)
-        self.chain.link(1.0, a2, 0.2, pi/2)
-        self.chain.link(1.0, a3, 0.1, 0.0)
+        self.chain = Chain().make()
         self.angle_scale    = Scale([-np.pi/4, np.pi/4], [-0.5, 0.5])
         self.position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
