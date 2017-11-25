@@ -17,20 +17,26 @@ chain.link(1.0, a3, 0.1, 0.0)
 angle_scale    = Scale([-np.pi/4, np.pi/4], [-0.5, 0.5])
 position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
-# Normalized position
-p1 = position_scale.forward_scale(2.0)
-p2 = position_scale.forward_scale(1.0)
-p3 = position_scale.forward_scale(1.5)
+# Position
+px = 2.0
+py = 1.0
+pz = 1.5
+print([px, py, pz])
+
+# Normalize the position
+p1 = position_scale.forward_scale(px)
+p2 = position_scale.forward_scale(py)
+p3 = position_scale.forward_scale(pz)
 p  = np.array([[p1, p2, p3]])
 
-# Prediction
+# Inference returns normalized angle
 r = model.predict(p)
 
-# Un-normalize angles
+# Inference de-normalized angled
 a1 = angle_scale.reverse_scale(r[0][0])
 a2 = angle_scale.reverse_scale(r[0][1])
 a3 = angle_scale.reverse_scale(r[0][2])
-print([a1, a2, a3])
+#print([a1, a2, a3])
 
 # Compute position with real transform based on angle
 q = chain.forward({
@@ -38,8 +44,8 @@ q = chain.forward({
     'a2': a2, 
     'a3': a3
 })
+
+# q should be non-normalized positions
 print(q)
-
-
 
 

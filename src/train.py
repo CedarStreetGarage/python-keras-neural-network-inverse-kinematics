@@ -17,7 +17,7 @@ checkpoint = ModelCheckpoint(filepath       = 'model_weights.h5',
 model.fit_generator(generator        = Generator().make(50), 
                     validation_data  = Generator().make(20),
                     steps_per_epoch  = 20, 
-                    epochs           = 50, 
-                    validation_steps = 5,
+                    epochs           = 30,
+                    validation_steps = 3,
                     callbacks        = [checkpoint])
 
