@@ -1,6 +1,6 @@
-from rotation import Rotation
-from translation import Translation
 from sympy.matrices import Matrix
+from rotation       import Rotation
+from translation    import Translation
 
 
 class Homogeneous(object):
