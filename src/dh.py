@@ -1,5 +1,6 @@
-from sympy       import simplify, pprint
-from homogeneous import Homogeneous
+from sympy          import simplify, pprint
+from sympy.matrices import Matrix
+from homogeneous    import Homogeneous
 
 
 class DH(object):
@@ -21,6 +22,10 @@ class DH(object):
        return r[:3]
 
     def summary(self):
-        print('Transformation:')
+        print('\nAggregate transformation:')
         pprint(self.c)
+        print('\nTranslation component:')
+        trans = self.c * self.o
+        pprint(Matrix(trans[:3]))
+        print('\nTranslation Jacobian:')
 

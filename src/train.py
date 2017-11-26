@@ -5,10 +5,10 @@ from chain            import Chain
 from generator        import Generator
 
 
-Chain().make().summary()
-
 m = Model().make()
 m.summary()
+
+Chain().make().summary()
 
 o = Adam(lr=1.0e-3)
 m.compile(optimizer=o, loss='mse')
