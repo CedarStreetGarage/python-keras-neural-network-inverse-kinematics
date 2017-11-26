@@ -10,14 +10,14 @@ class Homogeneous(object):
         self.t = Translation()
 
     def origin(self):
-        return Matrix([0.0, 0.0, 0.0, 1.0])
+        return Matrix([0, 0, 0, 1])
 
     def stationary(self):
         return Matrix([
-            [1.0, 0.0, 0.0, 0.0],
-            [0.0, 1.0, 0.0, 0.0],
-            [0.0, 0.0, 1.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0]
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
         ])
 
     def _build(self, r, t):
