@@ -1,9 +1,12 @@
 import numpy as np
 from sympy import symbols, pi
+from flow  import Flow
 from model import Model
 from chain import Chain
 from scale import Scale
 
+
+Flow().defaults()
 
 model = Model().make()
 model.load_weights('model_weights.h5')
@@ -29,16 +32,16 @@ p  = np.array([[p1, p2, p3]])
 r = model.predict(p)
 
 # Inference de-normalized angled
-a1 = angle_scale.reverse_scale(r[0][0])
-a2 = angle_scale.reverse_scale(r[0][1])
-a3 = angle_scale.reverse_scale(r[0][2])
-#print([a1, a2, a3])
+theta1 = angle_scale.reverse_scale(r[0][0])
+theta2 = angle_scale.reverse_scale(r[0][1])
+theta3 = angle_scale.reverse_scale(r[0][2])
+#print([theta1, theta2, theta3])
 
 # Compute position with real transform based on angle
 q = chain.forward({
-    'a1': a1, 
-    'a2': a2, 
-    'a3': a3
+    'theta1': theta1, 
+    'theta2': theta2, 
+    'theta3': theta3
 })
 
 # q should be non-normalized positions

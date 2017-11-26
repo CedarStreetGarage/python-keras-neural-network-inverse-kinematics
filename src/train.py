@@ -1,9 +1,12 @@
 from keras.optimizers import Adam
 from keras.callbacks  import ModelCheckpoint
+from flow             import Flow
 from model            import Model
 from chain            import Chain
 from generator        import Generator
 
+
+Flow().defaults()
 
 m = Model().make()
 m.summary()
