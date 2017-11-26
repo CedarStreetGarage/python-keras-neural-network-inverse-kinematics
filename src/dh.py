@@ -1,4 +1,4 @@
-from sympy       import simplify
+from sympy       import simplify, pprint
 from homogeneous import Homogeneous
 
 
@@ -19,4 +19,8 @@ class DH(object):
     def forward(self, params):
        r = self.c.evalf(subs=params) * self.o
        return r[:3]
+
+    def summary(self):
+        print('Transformation:')
+        pprint(self.c)
 

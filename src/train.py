@@ -1,23 +1,26 @@
 from keras.optimizers import Adam
 from keras.callbacks  import ModelCheckpoint
 from model            import Model
+from chain            import Chain
 from generator        import Generator
 
 
-model = Model().make()
-model.summary()
+Chain().make().summary()
 
-opt = Adam(lr=1.0e-3)
-model.compile(optimizer=opt, loss='mse')
+m = Model().make()
+m.summary()
 
-checkpoint = ModelCheckpoint(filepath       = 'model_weights.h5', 
-                             verbose        = True, 
-                             save_best_only = True)
+o = Adam(lr=1.0e-3)
+m.compile(optimizer=o, loss='mse')
 
-model.fit_generator(generator        = Generator().make(50), 
-                    validation_data  = Generator().make(20),
-                    steps_per_epoch  = 20, 
-                    epochs           = 20,
-                    validation_steps = 3,
-                    callbacks        = [checkpoint])
+mc = ModelCheckpoint(filepath       = 'model_weights.h5', 
+                     verbose        = True, 
+                     save_best_only = True)
+
+m.fit_generator(generator        = Generator().make(50), 
+                validation_data  = Generator().make(20),
+                steps_per_epoch  = 20, 
+                epochs           = 20,
+                validation_steps = 3,
+                callbacks        = [mc])
 
