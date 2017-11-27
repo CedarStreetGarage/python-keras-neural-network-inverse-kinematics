@@ -14,7 +14,8 @@ class Train(object):
         m = Model().make()
         m.summary()
 
-        Chain().make().summary()
+        Chain().make().transform()
+        Chain().make().determinant()
 
         o = Adam(lr=1.0e-3)
         m.compile(optimizer=o, loss='mse')

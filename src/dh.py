@@ -21,18 +21,16 @@ class DH(object):
         r = self.c.evalf(subs=params) * self.o
         return r[:3]
 
-    def _translation(self):
-        t = self.c * self.o
-        return Matrix(t[:3])
-
-    def _translation_jacobian(self):
-        return Matrix([])
-
-    def summary(self):
+    def transform(self):
         print('\n\nHomogeneous transformation:\n')
         pprint(self.c)
-        print('\n\nTranslation component:\n')
-        pprint(self._translation())
-        print('\n\nTranslation Jacobian:\n')
-        pprint(self._translation_jacobian())
+
+    def determinant(self):
+        t = self.c * self.o
+        m = Matrix(t[:3])
+        b = Matrix(['theta1', 'theta2', 'theta3'])
+        j = m.jacobian(b)
+        d = Matrix([j.det()])
+        print('\n\nTranslation Jacobian determinant:\n')
+        pprint(simplify(d))
 
