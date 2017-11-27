@@ -15,6 +15,6 @@ class Test(object):
 
         print('TWO LINK PLANAR TEST')
         print('--------------------')
-        dh_chain.transform()
+        dh_chain.transform_summary()
 
 

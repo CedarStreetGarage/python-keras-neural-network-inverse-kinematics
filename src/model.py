@@ -11,7 +11,7 @@ LAST_ACTIVATION   = 'sigmoid'
 class Model(object):
 
     def make(self):
-        return self._make(3, [20, 20, 20], 3)
+        return self._make(3, [50, 50, 50, 50, 50], 3)
 
     def _make(self, first, hidden, last):
         model = Sequential()

@@ -1,5 +1,6 @@
 import numpy          as     np
-from   sympy          import symbols, pi, pprint
+from   math           import sqrt
+from   sympy          import symbols, pi, pprint, simplify
 from   sympy.matrices import Matrix
 from   flow           import Flow
 from   model          import Model
@@ -21,12 +22,21 @@ class Infer(object):
         position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
         # Reference angles
-        theta1_ref =  np.pi/8
-        theta2_ref = -np.pi/16
-        theta3_ref =  np.pi/8
+        #theta1_ref =  np.pi/8
+        #theta2_ref = -np.pi/16
+        #theta3_ref =  np.pi/8
+        theta1_ref =  0.5
+        theta2_ref =  0.5
+        theta3_ref =  0.5
+
+        ref = Matrix([theta1_ref, theta2_ref, theta3_ref])
+
+        # Compute norm 
+        n = ref.T * ref
+        norm = sqrt(n[0])
 
         print('\nReference angles:')
-        pprint(Matrix([theta1_ref, theta2_ref, theta3_ref]))
+        pprint(ref)
 
         # Forward kinematic positions
         q = chain.forward({
@@ -55,6 +65,12 @@ class Infer(object):
         theta1_ik = angle_scale.reverse_scale(r[0][0])
         theta2_ik = angle_scale.reverse_scale(r[0][1])
         theta3_ik = angle_scale.reverse_scale(r[0][2])
+        inf = Matrix([theta1_ik, theta2_ik, theta3_ik])
         print('\nInferred IK angles:')
-        pprint(Matrix([theta1_ik, theta2_ik, theta3_ik]))
+        pprint(inf)
+
+        # Print error
+        err = simplify(norm * (ref - inf))
+        print('\nAngle error (relative):')
+        pprint(err)
 

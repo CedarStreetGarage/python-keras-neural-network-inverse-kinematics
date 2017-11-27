@@ -11,9 +11,12 @@ class Generator(object):
         self.position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
     def generate_angles(self):
-        theta1 = np.random.uniform(-np.pi/4, np.pi/4)
-        theta2 = np.random.uniform(-np.pi/4, np.pi/4)
-        theta3 = np.random.uniform(-np.pi/4, np.pi/4)
+        #theta1 = np.random.uniform(-np.pi/4, np.pi/4)
+        #theta2 = np.random.uniform(-np.pi/4, np.pi/4)
+        #theta3 = np.random.uniform(-np.pi/4, np.pi/4)
+        theta1 = np.random.uniform(0.0, 1.0)
+        theta2 = np.random.uniform(0.0, 1.0)
+        theta3 = np.random.uniform(0.0, 1.0)
         return [theta1, theta2, theta3]
 
     def scale_angles(self, a):
