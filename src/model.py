@@ -1,17 +1,17 @@
-from keras.models       import Sequential
-from keras.layers       import Dense, Dropout
+from keras.models import Sequential
+from keras.layers import Dense, Dropout
 
 
-DROPOUT_AMOUNT    = 0.3
+DROPOUT_AMOUNT    = 0.5
 INITIALIZATION    = 'random_normal'
-FIRST_ACTIVATIONS = 'relu'
+FIRST_ACTIVATIONS = 'sigmoid'
 LAST_ACTIVATION   = 'sigmoid'
 
 
 class Model(object):
 
     def make(self):
-        return self._make(3, [50, 50], 3)
+        return self._make(3, [20, 20, 20], 3)
 
     def _make(self, first, hidden, last):
         model = Sequential()

@@ -6,24 +6,27 @@ from chain            import Chain
 from generator        import Generator
 
 
-Flow().defaults()
+class Train(object):
 
-m = Model().make()
-m.summary()
+    def train(self):
+        Flow().defaults()
 
-Chain().make().summary()
+        m = Model().make()
+        m.summary()
 
-o = Adam(lr=1.0e-3)
-m.compile(optimizer=o, loss='mse')
+        Chain().make().summary()
 
-mc = ModelCheckpoint(filepath       = 'model_weights.h5', 
-                     verbose        = True, 
-                     save_best_only = True)
+        o = Adam(lr=1.0e-3)
+        m.compile(optimizer=o, loss='mse')
 
-m.fit_generator(generator        = Generator().make(50), 
-                validation_data  = Generator().make(20),
-                steps_per_epoch  = 20, 
-                epochs           = 20,
-                validation_steps = 3,
-                callbacks        = [mc])
+        mc = ModelCheckpoint(filepath       = 'model_weights.h5', 
+                             verbose        = True, 
+                             save_best_only = True)
+
+        m.fit_generator(generator        = Generator().make(50), 
+                        validation_data  = Generator().make(20),
+                        steps_per_epoch  = 20, 
+                        epochs           = 20,
+                        validation_steps = 3,
+                        callbacks        = [mc])
 

@@ -1,6 +1,6 @@
-import numpy as np
-from scale import Scale
-from chain import Chain
+import numpy as     np
+from   scale import Scale
+from   chain import Chain
 
 
 class Generator(object):
