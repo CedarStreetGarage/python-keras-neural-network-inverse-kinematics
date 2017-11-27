@@ -30,7 +30,7 @@ class Train(object):
         m.fit_generator(generator        = Generator().make(50), 
                         validation_data  = Generator().make(20),
                         steps_per_epoch  = 20, 
-                        epochs           = 10,
+                        epochs           = 20,
                         validation_steps = 3,
                         callbacks        = [mc])
 

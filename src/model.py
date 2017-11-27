@@ -1,17 +1,11 @@
 from keras.models import Sequential
-from keras.layers import Dense, Dropout
-
-
-DROPOUT_AMOUNT    = 0.5
-INITIALIZATION    = 'random_normal'
-FIRST_ACTIVATIONS = 'sigmoid'
-LAST_ACTIVATION   = 'sigmoid'
+from keras.layers import Dense
 
 
 class Model(object):
 
     def make(self):
-        return self._make(3, [10, 10], 3)
+        return self._make(3, [20, 20], 3)
 
     def _make(self, first, hidden, last):
         model = Sequential()
@@ -19,29 +13,27 @@ class Model(object):
         # First layer
         layer = Dense(input_dim          = first,
                       units              = hidden[0],
-                      kernel_initializer = INITIALIZATION,
+                      kernel_initializer = 'random_normal',
                       use_bias           = True,
-                      bias_initializer   = INITIALIZATION,
-                      activation         = FIRST_ACTIVATIONS)
+                      bias_initializer   = 'random_normal',
+                      activation         = 'relu')
         model.add(layer)
-        model.add(Dropout(DROPOUT_AMOUNT))
 
         # Hidden layers
         for i in range(len(hidden)-1):
             layer = Dense(units              = hidden[i+1],
-                          kernel_initializer = INITIALIZATION,
+                          kernel_initializer = 'random_normal',
                           use_bias           = True,
-                          bias_initializer   = INITIALIZATION,
-                          activation         = FIRST_ACTIVATIONS)
+                          bias_initializer   = 'random_normal',
+                          activation         = 'relu')
             model.add(layer)
-            model.add(Dropout(DROPOUT_AMOUNT))
 
         # Last layer
         layer = Dense(units              = last,
-                      kernel_initializer = INITIALIZATION,
+                      kernel_initializer = 'random_normal',
                       use_bias           = True,
-                      bias_initializer   = INITIALIZATION,
-                      activation         = LAST_ACTIVATION)
+                      bias_initializer   = 'random_normal',
+                      activation         = 'sigmoid')
         model.add(layer)
 
         return model

@@ -13,7 +13,7 @@ class Rotation(object):
 
     def rotate_x(self, x):
         return Matrix([
-            [1, 0,       0     ],
+            [1,      0,       0],
             [0, cos(x), -sin(x)],
             [0, sin(x),  cos(x)]
         ])
@@ -21,7 +21,7 @@ class Rotation(object):
     def rotate_y(self, y):
         return Matrix([
             [ cos(y), 0, sin(y)],
-            [ 0,      1, 0     ],
+            [ 0,      1,      0],
             [-sin(y), 0, cos(y)]
         ])
 

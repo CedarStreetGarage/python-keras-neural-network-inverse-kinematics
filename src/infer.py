@@ -19,9 +19,9 @@ class Infer(object):
         position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
         # Reference angles
-        theta1_ref =  0.5
-        theta2_ref =  0.5
-        theta3_ref =  0.5
+        theta1_ref =  0.4
+        theta2_ref =  0.1
+        theta3_ref =  0.25
         ref = np.array([theta1_ref, theta2_ref, theta3_ref])
         print('\nReference angles:')
         print(ref)
