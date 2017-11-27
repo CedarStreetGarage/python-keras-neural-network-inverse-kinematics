@@ -1,11 +1,8 @@
-import numpy          as     np
-from   math           import sqrt
-from   sympy          import symbols, pi, pprint, simplify
-from   sympy.matrices import Matrix
-from   flow           import Flow
-from   model          import Model
-from   chain          import Chain
-from   scale          import Scale
+import numpy as     np
+from   flow  import Flow
+from   model import Model
+from   chain import Chain
+from   scale import Scale
 
 
 class Infer(object):
@@ -22,35 +19,21 @@ class Infer(object):
         position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
 
         # Reference angles
-        #theta1_ref =  np.pi/8
-        #theta2_ref = -np.pi/16
-        #theta3_ref =  np.pi/8
         theta1_ref =  0.5
         theta2_ref =  0.5
         theta3_ref =  0.5
-
-        ref = Matrix([theta1_ref, theta2_ref, theta3_ref])
-
-        # Compute norm 
-        n = ref.T * ref
-        norm = sqrt(n[0])
-
+        ref = np.array([theta1_ref, theta2_ref, theta3_ref])
         print('\nReference angles:')
-        pprint(ref)
+        print(ref)
 
         # Forward kinematic positions
-        q = chain.forward({
+        px, py, pz = chain.forward({
             'theta1': theta1_ref, 
             'theta2': theta2_ref,
             'theta3': theta3_ref
         })
-
-        px = q[0]
-        py = q[1]
-        pz = q[2]
-
         print('\nComputed positions:')
-        pprint(Matrix([px, py, pz]))
+        print(np.array([px, py, pz]))
 
         # Normalize the position
         px = position_scale.forward_scale(px)
@@ -61,16 +44,16 @@ class Infer(object):
         # Inference returns normalized angle
         r = model.predict(p)
 
-        # Inference de-normalized angled
+        # De-normalized inference angles
         theta1_ik = angle_scale.reverse_scale(r[0][0])
         theta2_ik = angle_scale.reverse_scale(r[0][1])
         theta3_ik = angle_scale.reverse_scale(r[0][2])
-        inf = Matrix([theta1_ik, theta2_ik, theta3_ik])
+        inf = np.array([theta1_ik, theta2_ik, theta3_ik])
         print('\nInferred IK angles:')
-        pprint(inf)
+        print(inf)
 
-        # Print error
-        err = simplify(norm * (ref - inf))
+        # Relative error
+        err = np.abs(ref - inf) / ref
         print('\nAngle error (relative):')
-        pprint(err)
+        print(err)
 
