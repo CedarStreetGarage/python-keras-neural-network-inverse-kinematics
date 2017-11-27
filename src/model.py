@@ -1,9 +1,8 @@
 from keras.models       import Sequential
-from keras.layers       import Dense
-from keras.regularizers import l2
+from keras.layers       import Dense, Dropout
 
 
-L2_REGULARIZATION = 0.03
+DROPOUT_AMOUNT    = 0.3
 INITIALIZATION    = 'random_normal'
 FIRST_ACTIVATIONS = 'relu'
 LAST_ACTIVATION   = 'sigmoid'
@@ -12,8 +11,7 @@ LAST_ACTIVATION   = 'sigmoid'
 class Model(object):
 
     def make(self):
-        return self._make(3, [10, 10, 10], 3)
-
+        return self._make(3, [50, 50], 3)
 
     def _make(self, first, hidden, last):
         model = Sequential()
@@ -22,23 +20,21 @@ class Model(object):
         layer = Dense(input_dim          = first,
                       units              = hidden[0],
                       kernel_initializer = INITIALIZATION,
-                      kernel_regularizer = l2(L2_REGULARIZATION),
                       use_bias           = True,
                       bias_initializer   = INITIALIZATION,
-                      bias_regularizer   = l2(L2_REGULARIZATION),
                       activation         = FIRST_ACTIVATIONS)
         model.add(layer)
+        model.add(Dropout(DROPOUT_AMOUNT))
 
         # Hidden layers
         for i in range(len(hidden)-1):
             layer = Dense(units              = hidden[i+1],
                           kernel_initializer = INITIALIZATION,
-                          kernel_regularizer = l2(L2_REGULARIZATION),
                           use_bias           = True,
                           bias_initializer   = INITIALIZATION,
-                          bias_regularizer   = l2(L2_REGULARIZATION),
                           activation         = FIRST_ACTIVATIONS)
             model.add(layer)
+            model.add(Dropout(DROPOUT_AMOUNT))
 
         # Last layer
         layer = Dense(units              = last,
