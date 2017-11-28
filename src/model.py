@@ -5,7 +5,7 @@ from keras.layers import Dense
 class Model(object):
 
     def make(self):
-        return self._make(3, [20, 20], 3)
+        return self._make(3, [20], 3)
 
     def _make(self, first, hidden, last):
         model = Sequential()
@@ -16,7 +16,7 @@ class Model(object):
                       kernel_initializer = 'random_normal',
                       use_bias           = True,
                       bias_initializer   = 'random_normal',
-                      activation         = 'relu')
+                      activation         = 'sigmoid')
         model.add(layer)
 
         # Hidden layers
@@ -25,7 +25,7 @@ class Model(object):
                           kernel_initializer = 'random_normal',
                           use_bias           = True,
                           bias_initializer   = 'random_normal',
-                          activation         = 'relu')
+                          activation         = 'sigmoid')
             model.add(layer)
 
         # Last layer

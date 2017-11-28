@@ -1,4 +1,4 @@
-from sympy  import symbols, pi
+from sympy  import symbols
 from src.dh import DH
 
 

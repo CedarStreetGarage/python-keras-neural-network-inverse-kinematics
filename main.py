@@ -8,6 +8,7 @@ p = argparse.ArgumentParser()
 p.add_argument('--test',  action='store_true', help='Verify Denavit-Hartenberg for two link case')
 p.add_argument('--train', action='store_true', help='Train network to learn IK')
 p.add_argument('--infer', action='store_true', help='Run inference test on existing network model')
+p.add_argument('--table', action='store_true', help='Produce table of determinant values')
 
 args = p.parse_args()
 
@@ -23,4 +24,7 @@ if args.infer:
     import src.infer as Infer
     Infer.Infer().infer()
 
+if args.table:
+    import test.table as Table
+    Table.Table().table()
 

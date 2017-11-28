@@ -7,13 +7,13 @@ class Generator(object):
 
     def __init__(self):
         self.chain = Chain().make()
-        self.angle_scale    = Scale([-np.pi/4, np.pi/4], [-0.5, 0.5])
-        self.position_scale = Scale([-10.0,    10.0   ], [-0.5, 0.5])
+        self.angle_scale    = Scale([-0.2, 0.2], [-0.5, 0.5])
+        self.position_scale = Scale([-3.0, 3.0], [-0.5, 0.5])
 
     def generate_angles(self):
-        theta1 = np.random.uniform(0.0, 0.5)
-        theta2 = np.random.uniform(0.0, 0.5)
-        theta3 = np.random.uniform(0.0, 0.5)
+        theta1 = np.random.uniform(0.0, 0.2)
+        theta2 = np.random.uniform(0.0, 0.2)
+        theta3 = np.random.uniform(0.0, 0.2)
         return [theta1, theta2, theta3]
 
     def scale_angles(self, a):
