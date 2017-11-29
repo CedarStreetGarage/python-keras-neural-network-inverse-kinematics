@@ -25,11 +25,20 @@ class DH(object):
         print('\n\nHomogeneous transformation:')
         pprint(self.c)
 
-    def determinant(self):
+    def jacobian(self):
         t = self.c * self.o
         m = Matrix(t[:3])
         b = Matrix(['theta1', 'theta2', 'theta3'])
         j = m.jacobian(b)
+        return simplify(j)
+
+    def eigen(self):
+        j = self.jacobian()
+        e = Matrix([j.eigenvals()])
+        return simplify(e)
+
+    def determinant(self):
+        j = self.jacobian()
         d = Matrix([j.det()])
         return simplify(d)
 
@@ -38,7 +47,15 @@ class DH(object):
         r = d.evalf(subs=params)
         return r[0]
 
+    def jacobian_summary(self):
+        print('\n\nTranslation Jacobian:')
+        pprint(self.jacobian())
+
     def determinant_summary(self):
         print('\n\nTranslation Jacobian determinant:')
         pprint(self.determinant())
+
+    def eigenvalue_summary(self):
+        print('\n\nTranslation Jacobian eigenvalues:')
+        pprint(self.eigen())
 

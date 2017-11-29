@@ -15,13 +15,13 @@ class Infer(object):
 
         chain = Chain().make()
 
-        angle_scale    = Scale([-0.2, 0.2], [-0.5, 0.5])
+        angle_scale    = Scale([-1.0, 1.0], [-0.5, 0.5])
         position_scale = Scale([-3.0, 3.0], [-0.5, 0.5])
 
         # Reference angles
-        theta1_ref =  0.1
-        theta2_ref =  0.05
-        theta3_ref =  0.15
+        theta1_ref =  0.3
+        theta2_ref =  0.4
+        theta3_ref =  0.35
         ref = np.array([theta1_ref, theta2_ref, theta3_ref])
         print('\nReference angles:')
         print(ref)

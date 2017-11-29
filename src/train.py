@@ -16,7 +16,9 @@ class Train(object):
 
         c = Chain().make()
         c.transform_summary()
+        c.jacobian_summary()
         c.determinant_summary()
+        #c.eigenvalue_summary()
 
         print('_________________________________________________________________\n\n')
 

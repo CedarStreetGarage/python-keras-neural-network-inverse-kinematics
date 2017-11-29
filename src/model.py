@@ -1,11 +1,11 @@
-from keras.models import Sequential
-from keras.layers import Dense
+from keras.models       import Sequential
+from keras.layers       import Dense
 
 
 class Model(object):
 
     def make(self):
-        return self._make(3, [20], 3)
+        return self._make(3, [500, 500], 3)
 
     def _make(self, first, hidden, last):
         model = Sequential()
