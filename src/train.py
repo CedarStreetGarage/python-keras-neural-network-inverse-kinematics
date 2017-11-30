@@ -29,10 +29,10 @@ class Train(object):
                              verbose        = True, 
                              save_best_only = True)
 
-        m.fit_generator(generator        = Generator().make(50), 
-                        validation_data  = Generator().make(20),
-                        steps_per_epoch  = 20, 
-                        epochs           = 20,
+        m.fit_generator(generator        = Generator().make(20), 
+                        validation_data  = Generator().make(10),
+                        steps_per_epoch  = 100, 
+                        epochs           = 10,
                         validation_steps = 3,
                         callbacks        = [mc])
 

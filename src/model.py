@@ -16,7 +16,7 @@ class Model(object):
                       kernel_initializer = 'random_normal',
                       use_bias           = True,
                       bias_initializer   = 'random_normal',
-                      activation         = 'sigmoid')
+                      activation         = 'tanh')
         model.add(layer)
 
         # Hidden layers
@@ -25,7 +25,7 @@ class Model(object):
                           kernel_initializer = 'random_normal',
                           use_bias           = True,
                           bias_initializer   = 'random_normal',
-                          activation         = 'sigmoid')
+                          activation         = 'tanh')
             model.add(layer)
 
         # Last layer
@@ -33,7 +33,7 @@ class Model(object):
                       kernel_initializer = 'random_normal',
                       use_bias           = True,
                       bias_initializer   = 'random_normal',
-                      activation         = 'sigmoid')
+                      activation         = 'tanh')
         model.add(layer)
 
         return model
