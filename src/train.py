@@ -11,14 +11,12 @@ class Train(object):
     def train(self):
         Flow().defaults()
 
-        m = Model().make()
+        m = Model().make_fcn()
         m.summary()
 
         c = Chain().make()
         c.transform_summary()
-        c.jacobian_summary()
         c.determinant_summary()
-        #c.eigenvalue_summary()
 
         print('_________________________________________________________________\n\n')
 

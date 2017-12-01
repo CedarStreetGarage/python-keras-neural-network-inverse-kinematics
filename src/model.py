@@ -1,13 +1,13 @@
-from keras.models       import Sequential
-from keras.layers       import Dense
+from keras.models import Sequential
+from keras.layers import Dense
 
 
 class Model(object):
 
-    def make(self):
-        return self._make(3, [500, 500], 3)
+    def make_fcn(self):
+        return self._make_fcn(3, [500, 500], 3)
 
-    def _make(self, first, hidden, last):
+    def _make_fcn(self, first, hidden, last):
         model = Sequential()
 
         # First layer

@@ -21,6 +21,12 @@ class DH(object):
         r = self.c.evalf(subs=params) * self.o
         return r[:3]
 
+    def get_rotation(self):
+        return self.c[:3,:3]
+
+    def get_translation(self):
+        return self.c.col(4)[:3]
+
     def transform_summary(self):
         print('\n\nHomogeneous transformation:')
         pprint(self.c)

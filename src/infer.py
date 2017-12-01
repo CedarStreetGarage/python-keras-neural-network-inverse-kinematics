@@ -10,7 +10,7 @@ class Infer(object):
     def infer(self):
         Flow().defaults()
 
-        model = Model().make()
+        model = Model().make_fcn()
         model.load_weights('model_weights.h5')
 
         chain = Chain().make()

@@ -52,4 +52,4 @@ class Homogeneous(object):
         r = self.r.rotate_z(z)
         t = self.t.stationary()
         return self._build(r, t)
- 
+
