@@ -86,7 +86,7 @@ There are also some peripherally useful articles having to do with planar and 3-
 
 There are also several books pertaining to control theory that cover neural network solutions.
 
-In this study I am using a 3R robot.  The rigid body mechanics are well studied, but there
+In this study I am using a 3R robot.  The rigid body mechanics are well studied, and there
 are focus articles relating to space division on the basis of the 3R singularity set that 
 are relevant to understanding the style of manifold we intend to learn:
 
@@ -110,7 +110,7 @@ function expression, and augmented by Lin on why deep learning works as well as 
 
 
 The reason for the inclusion of this should be clear -- we are attempting to learn a manifold, hence the 
-representations that are learnable of the manifold is of crucial importance.  
+representations that are learnable for the manifold is of crucial importance.  
 
 
 
