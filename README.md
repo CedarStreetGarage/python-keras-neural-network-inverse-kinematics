@@ -114,7 +114,7 @@ representations that are learnable for the manifold is of crucial importance.
 
 
 
-### Methodology
+### Link Description Methodology
 
 The robot kinematics studied here is for a 3R robot.  Simplicity and I have an industrial 6R that I can
 use, but moreover it is handy given the abundance of inexpensive servo-driven 3R robotics models that 
@@ -137,7 +137,11 @@ diagram:
 
 After establishing a link chain based on the Denavit-Hartenberg parameters, a composite homogeneous
 transformation is produced.  Summary information about the transformation and the Jacobian
-are provided.  The transformation is also evaluated to train the network.
+are provided.  The forwward transformation is evaluated to train the network.
+
+
+
+### Model Methodology
 
 
 
@@ -169,7 +173,8 @@ The main objective is that the model used for training results in an inference t
 commands are mainly for testing and to validate the Denavit-Hartenberg part of the problem.
 
 The model can be found in `src/model.py`, the generator is in `/src/generator.py` and the specifics of training
-the network can be found in `src/train.py`.
+the network can be found in `src/train.py`.  It is all pretty self explanatory and easy to find.  The only thing
+it is not is performant since it is based on `sympy` evaluation.
 
 
 
@@ -178,4 +183,26 @@ the network can be found in `src/train.py`.
 
 
 ### Physical Robot Results
+
+
+
+### Future Plans
+
+The original idea from a practical perspective was to be able to train inverse kinematics using a robot with
+unknown forward or inverse kinematics, though with consistent controlability, and image data from uncalibrated
+cameras.  Since this involves a lot of unknowns, the idea of learning the complex mapping is very appealing.  So
+long as there is consistent ability to actuate joints, the network ought be able to learn the inverse 
+kinematics.  Similarly, the image data from uncalibrated cameras should be able to produce the desired effect within
+some reasonable tolerance.  
+
+In this model, the cameras would feed a convnet.  The convnet might have six layer input, three for each of two 
+cameras, as the features being detected between the cameras are similar.  Or it could just be the concatenation
+of multiple images in a typical three layer input.  Depends on how easily one wants to transfer learning from one
+network to another on some of the decisions on that aspect of the problem.  The top end would be similar to the 
+network depicted in this example project, a regressive network as either a fully connected network using an activation
+supporting universal approximation or a single radial basis function later with a dense terminal layer.  The 
+convnet portion of the network could be trained separately, or even adapted directly from existing trained 
+networks. One the features are trained in the convnet portion, the weights can be frozen and the regressive 
+top end trained.  So this is cool -- there is an aspect training for the specific setup of the cameras, and an
+aspect training for unknown mappins and nonlinearities.  
 
