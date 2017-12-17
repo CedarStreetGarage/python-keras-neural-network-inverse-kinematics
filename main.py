@@ -14,21 +14,21 @@ p.add_argument('--ik',    action='store_true', help='Run inverse kinematic test 
 args = p.parse_args()
 
 if args.test:
-    import tests.test as Test
-    Test.Test().test()
+    from tests.test import Test
+    Test().test()
 
 if args.train:
-    import src.train as Train
-    Train.Train().train()
+    from src.train import Train
+    Train().train()
 
 if args.infer:
-    import src.infer as Infer
-    Infer.Infer().infer()
+    from src.infer import Infer
+    Infer().infer()
 
 if args.table:
-    import tests.table as Table
-    Table.Table().table()
+    from tests.table import Table
+    Table().table()
 
 if args.ik:
-    import tests.ik as IK
-    IK.IK().ik()
+    from tests.ik import IK
+    IK().ik()
